@@ -7,6 +7,7 @@ class Product {
   final double quantity;
   final int locationId;
 
+  //constructor de la clase 
   Product({
     required this.serialNumber,
     required this.description,
@@ -18,6 +19,8 @@ class Product {
 
   });
 
+
+  // delaracion de claves json
   Map <String, dynamic> toJson(){
     return{
       'serial_number' : serialNumber,

@@ -1,5 +1,5 @@
 // bin/main.dart
-import '../lib/excel_upload.dart'; // ✅ Usa '../lib/' para subir al directorio raíz y entrar a lib/
+import '../lib/excel_upload.dart'; 
 
 void main(List<String> arguments) async {
   // ⭐️ Define tus parámetros constantes

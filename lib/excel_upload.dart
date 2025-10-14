@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'dart:async';
 import 'package:excel/excel.dart';
-import 'product.dart';      // ✅ Importa la clase Product
+import 'product.dart';      //Importa la clase Product
 import 'apiService.dart'; 
 
-
+//metodo para procesar el archivo de excel
+//recibe como parametros: filePath: la ruta del archivo y el url del API
 Future<void> processExcel(String filePath, String apiUrl) async {
 
   var file = File(filePath);
@@ -23,8 +24,8 @@ Future<void> processExcel(String filePath, String apiUrl) async {
 
   print('Archivo cargado: $sheetName');
 
-  for (var row in sheet.rows.skip(1)){
-
+  for (var row in sheet.rows.skip(1)){ //se salta la fila 1 que es el encabezado
+    //se lee columna por colunmna
     try {
       var serialNumberValue = row[1]?.value.toString() ??'';
       var descriptionValue = row[2]?.value.toString() ??'';
