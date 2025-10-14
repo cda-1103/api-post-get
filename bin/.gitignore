@@ -1,0 +1,22 @@
+# .gitignore
+
+# Archivos de Dart generados
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-plugin-registrant.dart
+build/
+*.lock  # Opcional, pero incluye pubspec.lock
+
+# Archivos de Python/Django generados
+venv/
+__pycache__/
+*.pyc
+db.sqlite3 # Si usas la base de datos por defecto
+/media/
+/static/
+
+# Archivos de IDEs
+.idea/
+.vscode/
