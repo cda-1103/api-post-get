@@ -20,7 +20,7 @@ class Product {
   });
 
 
-  // delaracion de claves json
+  // conversion a un map para luego convertirla a un tipo json
   Map <String, dynamic> toJson(){
     return{
       'serial_number' : serialNumber,

@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'product.dart';
 
-//metodo para la logica de conexion a la API
+//metodo para la logica de conexion a la API metodo post 
 Future<void> uploadProduct(Product product, String apiUrl) async {
   final url = Uri.parse(apiUrl);
-  final jsonBody = jsonEncode(product.toJson()); //convierte la cadena de texto a json para enviarlo 
+  final jsonBody = jsonEncode(product.toJson()); //convierte el map a json para enviarlo 
 
-  print('Enviaiado el producto ${product.serialNumber}');
+  print('Enviado el producto ${product.serialNumber}');
 
   try {
     final response = await http.post(

@@ -14,13 +14,13 @@ Future<void> processExcel(String filePath, String apiUrl) async {
     return;
   }
 
-  var bytes = file.readAsBytesSync();
-  var excel = Excel.decodeBytes(bytes);
+  var bytes = file.readAsBytesSync(); //lee los bytes del archivo
+  var excel = Excel.decodeBytes(bytes); //decodifica los bytes para leer el archivo
 
   var sheetName = excel.tables.keys.first;
   var sheet = excel.tables[sheetName]!;
 
-  List<Future<void>> uploadTasks = [];
+  List<Future<void>> uploadTasks = []; //lista que guarda todos los productois. de subida
 
   print('Archivo cargado: $sheetName');
 
@@ -29,14 +29,13 @@ Future<void> processExcel(String filePath, String apiUrl) async {
     try {
       var serialNumberValue = row[1]?.value.toString() ??'';
       var descriptionValue = row[2]?.value.toString() ??'';
-      //print('DIAGNÓSTICO: Valor leído de [1]: "${row[1]?.value}"');
-      //print('DIAGNÓSTICO: Serial Number Value: "$serialNumberValue"');
       var categoryId = int.tryParse(row[3]?.value.toString() ?? '0') ?? 0;
       var brand = row[4]?.value.toString() ??'';
       var type = row[5]?.value.toString()??'';
       var quantity = double.tryParse(row[6]?.value.toString() ?? '0.0') ?? 0.0;
       var locationId = int.tryParse(row[7]?.value.toString() ?? '0') ?? 0;
 
+      //objeto producto
       var product = Product(
         serialNumber: serialNumberValue, 
         description: descriptionValue, 
