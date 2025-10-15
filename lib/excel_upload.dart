@@ -20,7 +20,7 @@ Future<void> processExcel(String filePath, String apiUrl) async {
   var sheetName = excel.tables.keys.first;
   var sheet = excel.tables[sheetName]!;
 
-  List<Future<void>> uploadTasks = []; //lista que guarda todos los productois. de subida
+  List<Product> productsToUpload = []; //lista para guardar y luego enviar todos los productos 
 
   print('Archivo cargado: $sheetName');
 
@@ -47,18 +47,18 @@ Future<void> processExcel(String filePath, String apiUrl) async {
         );
 
         if (serialNumberValue.isNotEmpty) {
-          uploadTasks.add(uploadProduct(product, apiUrl));
+          productsToUpload.add(product); //guardamos el producto en la lista
         }
 
     } catch (e) {
       print('error al procesar una fila: $e');
     }
   }
-  print('Esperando que ${uploadTasks.length} productos terminen de subir...');
+  print('Esperando que ${productsToUpload.length} productos terminen de subir...');
 
-  await Future.wait(uploadTasks);
+  await uploadProductList(productsToUpload, apiUrl);
   
-  print('--- PROCESAMIENTO DE EXCEL FINALIZADO ---');
+  print('--- PROCESAMIENTO FINALIZADO ---');
 
 
 }
