@@ -126,3 +126,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+
+    'version' : 1,
+    'disable_existing_loggers' : False,  #para no desabilitar los loggers existentes de django
+    'formatters': {
+        'formato': {
+            'format' : '{levelname} {asctime} {message}',
+            'style' : '{',
+        },
+    },
+    
+    'handlers': {
+        'file': {
+            'level' : 'INFO',
+            'filename' :'/Users/claudiodavilaablan/Documents/base de datos app inventario/carga_archivo.txt',
+            'class': 'logging.FileHandler',
+            'formatter': 'formato',
+        },
+    },
+
+    'loggers': {
+        'carga_archivo': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}

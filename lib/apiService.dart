@@ -9,7 +9,7 @@ Future<void> uploadProductList(List<Product>products, String apiUrl) async {
   final jsonList = products.map((p) => p.toJson()).toList();
   final jsonBody = jsonEncode(jsonList);
 
-  print('Enviado el producto ${products.length}');
+  print('Enviado la cantidad de: ${products.length} productos al servidor');
 
   try {
     final response = await http.post(
@@ -19,7 +19,7 @@ Future<void> uploadProductList(List<Product>products, String apiUrl) async {
     );
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      print('Exito en la carga masiva. (status ${response.statusCode})');
+      print('Exito en la carga masiva hacia el servidor. (status ${response.statusCode})');
     } else {
       print('Error ${response.statusCode} en la subida');
       print('repuesta:  ${response.body}');
