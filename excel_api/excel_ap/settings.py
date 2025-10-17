@@ -81,6 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': Path('/Users/claudiodavilaablan/Documents/base de datos app inventario/cuenta2.0.db'),
+        'journal_mode': 'WAL',
     }
 }
 

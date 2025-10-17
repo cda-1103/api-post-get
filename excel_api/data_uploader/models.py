@@ -7,15 +7,22 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+#nota el modelo pide qwe los modelos de categorias y locaciones existan en la aplicacion data_uploader
+
 
 class Products(models.Model):
     serial_number = models.TextField(unique=True, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    category = models.ForeignKey('Categories', models.DO_NOTHING, blank=True, null=True)
+    category_id = models.IntegerField()
+    #category = models.ForeignKey('Categories', models.DO_NOTHING, blank=True, null=True) 
     brand = models.TextField(blank=True, null=True)
     type = models.TextField(blank=True, null=True)
     quantity = models.FloatField(blank=True, null=True)
-    location = models.ForeignKey('Locations', models.DO_NOTHING, blank=True, null=True)
+    location_id = models.IntegerField()
+    #location = models.ForeignKey('Locations', models.DO_NOTHING, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.serial_number} - {self.description[20]}"
 
     class Meta:
         managed = False

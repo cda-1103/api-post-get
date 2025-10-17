@@ -14,7 +14,7 @@ Future<void> uploadProductList(List<Product>products, String apiUrl) async {
   try {
     final response = await http.post(
       url,
-      headers: {'Conten-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json'},
       body: jsonBody,
     );
 
