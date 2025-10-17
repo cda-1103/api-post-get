@@ -29,21 +29,21 @@ Future<void> processExcel(String filePath, String apiUrl) async {
     try {
       var serialNumberValue = row[1]?.value.toString() ??'';
       var descriptionValue = row[2]?.value.toString() ??'';
-      var categoryId = int.tryParse(row[3]?.value.toString() ?? '0') ?? 0;
+      var category = row[3]?.value.toString() ??'';
       var brand = row[4]?.value.toString() ??'';
       var type = row[5]?.value.toString()??'';
       var quantity = double.tryParse(row[6]?.value.toString() ?? '0.0') ?? 0.0;
-      var locationId = int.tryParse(row[7]?.value.toString() ?? '0') ?? 0;
+      var location = row[7]?.value.toString() ??'';
 
       //objeto producto
       var product = Product(
         serialNumber: serialNumberValue, 
         description: descriptionValue, 
-        categoryId: categoryId, 
+        category: category, 
         brand: brand, 
         type: type, 
         quantity: quantity, 
-        locationId: locationId
+        location: location
         );
 
         if (serialNumberValue.isNotEmpty) {

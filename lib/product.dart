@@ -1,21 +1,21 @@
 class Product {
   final String serialNumber;
   final String description;
-  final int categoryId;
+  final String category;
   final String brand;
   final String type;
   final double quantity;
-  final int locationId;
+  final String location;
 
   //constructor de la clase 
   Product({
     required this.serialNumber,
     required this.description,
-    required this.categoryId,
+    required this.category,
     required this.brand,
     required this.type,
     required this.quantity,
-    required this.locationId,
+    required this.location,
 
   });
 
@@ -25,11 +25,11 @@ class Product {
     return{
       'serial_number' : serialNumber,
       'description' : description,
-      'category_id' : categoryId,
+      'category' : category,
       'brand': brand,
       'type' : type,
       'quantity' : quantity,
-      'location_id' : locationId,
+      'location' : location,
     };
 
   }
