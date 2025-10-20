@@ -1,33 +1,33 @@
-import 'dart:convert';
+//import 'dart:convert'; //importa para codificación y decodificación de JSON
+import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'product.dart';
+//import 'product.dart';
 
 //metodo para la logica de conexion a la API metodo post 
-Future<void> uploadProductList(List<Product>products, String apiUrl) async {
-  final url = Uri.parse(apiUrl);
-  
-  final jsonList = products.map((p) => p.toJson()).toList();
-  final jsonBody = jsonEncode(jsonList);
+Future<void> sendFile(File file, String apiUrl) async {
 
-  print('Enviado la cantidad de: ${products.length} productos al servidor');
+  final url = Uri.parse(apiUrl);
+  var request = http.MultipartRequest('POST', url);
+  
+  request.files.add(
+    await http.MultipartFile.fromPath('file', file.path),
+  );
+
 
   try {
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonBody,
-    );
+    var sendRequest = await request.send();
+
+    var response = await http.Response.fromStream(sendRequest);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      print('Exito en la carga masiva hacia el servidor. (status ${response.statusCode})');
+      print('Archivo enviado exitosamente!');
+      print('Respuesta del servidor: ${response.body}');
     } else {
-      print('Error ${response.statusCode} en la subida');
-      print('repuesta:  ${response.body}');
+      print('Error al subir el archivo. Código de estado: ${response.statusCode}');
+      print('Respuesta de la servidor: ${response.body}');
     }
-
-
   } catch (e) {
-    print('Fallo de conexion $e');
+    print('Excepción al enviar el archivo: $e');
   }
 
 

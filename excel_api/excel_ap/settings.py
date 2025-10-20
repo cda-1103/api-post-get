@@ -127,6 +127,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#configuracion de el loggin, para la carga de archivos excel
 LOGGING = {
 
     'version' : 1,
